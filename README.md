@@ -4,7 +4,7 @@
 
 Mi objetivo es que te sirva de guía y te ayude a organizar tu preparación de la mejor manera posible. ¡Espero que te sirva de ayuda!
 
-A parte te dejo unas máquinas de la plataforma VulNyx donde podrás practicar las técnicas aprendida en el path CBBH:
+A parte te dejo unas máquinas de la plataforma [VulNyx](https://vulnyx.com/) donde podrás practicar las técnicas aprendida en el path CBBH:
 
 - Swamp
 - Express
