@@ -20,7 +20,7 @@ A parte te dejo unas máquinas de la plataforma [VulNyx](https://vulnyx.com/) do
 
 # Redes sociales
 * **YouTube:** [Youtube](https://www.youtube.com/@jackie0x17) 
-* **X:** [X/Twitter](https://twitter.com/TU_USUARIO_TWITTER)
+* **X:** [X/Twitter](https://twitter.com/J4ckie0x17)
 * **LinkedIn:** [Linkedin](https://www.linkedin.com/in/albert-llim%C3%B3s-gonz%C3%A1lez/)
 * **Instagram:** [Instagram](https://www.instagram.com/jackie0x17/)
 * **Sitio Web/Portfolio:** [Mi portafolio](https://albertllimos.pages.dev/)
