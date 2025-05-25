@@ -23,4 +23,4 @@ A parte te dejo unas máquinas de la plataforma VulNyx donde podrás practicar l
 * 🐦 **X:**[X](https://twitter.com/TU_USUARIO_TWITTER)
 * 💼 **LinkedIn:** [Linkedin](https://www.linkedin.com/in/albert-llim%C3%B3s-gonz%C3%A1lez/)
 * 📸 **Instagram:** [Instagram](https://www.instagram.com/jackie0x17/)
-* * 🌐 **Sitio Web/Portfolio:** [Mi portafolio](https://albertllimos.pages.dev/)
+* 🌐 **Sitio Web/Portfolio:** [Mi portafolio](https://albertllimos.pages.dev/)
