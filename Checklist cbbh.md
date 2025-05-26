@@ -1,4 +1,4 @@
-# Checklist de Pentesting para el Examen CBBH
+# Checklist para el Examen CBBH
 ### I. Reconocimiento y Recopilación de Información (Footprinting & Fingerprinting)
 
 #### A. Fingerprinting del Servidor Web y Tecnologías
