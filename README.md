@@ -15,7 +15,7 @@ A parte te dejo unas máquinas de la plataforma [VulNyx](https://vulnyx.com/) do
 - Jerry
 - Lost
 
-➡️ **Mira el vídeo aquí para más información:** 
+➡️ **Mira el vídeo aquí para más información:** https://youtu.be/wZljfqtW4JI
 
 
 # Redes sociales
