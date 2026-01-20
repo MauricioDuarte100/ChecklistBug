@@ -827,14 +827,9 @@
     - [ ] Si se obtiene acceso como administrador, ¿se puede editar el código PHP de temas/plugins para insertar un web shell?
     - [ ] (Apariencia > Editor de Temas o Plugins > Editor de Plugins).
 - [ ] **File Upload Vulnerabilities en Plugins/Temas.**
-- [ ] **XSS, SQLi en Plugins/Temas.**
-
-
-
-# Web-PenTest-Checklist INTEGRAR
+- [ ] **XSS, SQLi en Plugins/Temas.*
 
 ## Configuración de Cookies
-
 - [ ] **Transmisión insegura:** Asegura que las cookies se envíen solo a través de conexiones HTTPS para prevenir la intercepción por atacantes. Establece el atributo "Secure" para todas las cookies.
 
 - [ ] **Falta atributo HttpOnly:** Establece el atributo "HttpOnly" para asegurar que las cookies sean inaccesibles para scripts del lado del cliente, reduciendo el riesgo de ataques XSS.
