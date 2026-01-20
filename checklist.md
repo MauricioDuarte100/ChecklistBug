@@ -1,4 +1,4 @@
-# Checklist para el Examen CBBH
+
 ### Footprinting & Fingerprinting
 
 #### Fingerprinting del Servidor Web y Tecnologías
