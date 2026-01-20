@@ -830,408 +830,409 @@
 - [ ] **XSS, SQLi en Plugins/Temas.**
 
 
+
 # Web-PenTest-Checklist INTEGRAR
 
-## Cookie Settings
+## Configuración de Cookies
 
-- [ ] **Insecure transmission:** Ensure cookies are sent only over HTTPS connections, to prevent interception by attackers. Set the "Secure" attribute for all cookies.
+- [ ] **Transmisión insegura:** Asegura que las cookies se envíen solo a través de conexiones HTTPS para prevenir la intercepción por atacantes. Establece el atributo "Secure" para todas las cookies.
 
-- [ ] **Missing HttpOnly attribute:** Set the "HttpOnly" attribute to ensure cookies are inaccessible to client-side scripts, reducing the risk of cross-site scripting (XSS) attacks.
+- [ ] **Falta atributo HttpOnly:** Establece el atributo "HttpOnly" para asegurar que las cookies sean inaccesibles para scripts del lado del cliente, reduciendo el riesgo de ataques XSS.
 
-- [ ] **Missing SameSite attribute:** Set the "SameSite" attribute to "Strict" or "Lax" to prevent cross-site request forgery (CSRF) attacks by ensuring cookies are only sent with requests originating from the same domain.
+- [ ] **Falta atributo SameSite:** Establece el atributo "SameSite" en "Strict" o "Lax" para prevenir ataques CSRF asegurando que las cookies solo se envíen con peticiones originadas desde el mismo dominio.
 
-- [ ] **Excessive cookie lifetime:** Limit the duration of cookie validity by setting the "Expires" or "Max-Age" attribute. Long-lived cookies pose a greater risk if they are compromised.
+- [ ] **Vida útil excesiva de la cookie:** Limita la duración de validez de la cookie estableciendo el atributo "Expires" o "Max-Age". Las cookies de larga duración suponen un mayor riesgo si se ven comprometidas.
 
-- [ ] **Weak encryption:** Use strong encryption algorithms and up-to-date cryptographic libraries to protect sensitive information stored in cookies.
+- [ ] **Cifrado débil:** Utiliza algoritmos de cifrado fuertes y librerías criptográficas actualizadas para proteger la información confidencial almacenada en las cookies.
 
-- [ ] **Insufficiently random session IDs:** Ensure session IDs are generated using a strong source of randomness, to prevent session hijacking and guessing attacks.
+- [ ] **IDs de sesión insuficientemente aleatorios:** Asegura que los IDs de sesión se generen utilizando una fuente fuerte de aleatoriedad para prevenir secuestro de sesión y ataques de adivinación.
 
-- [ ] **Overly permissive cookie domain and path:** Limit the scope of cookies by setting the "Domain" and "Path" attributes to specific subdomains or directories, reducing the risk of unauthorized access.
+- [ ] **Dominio y path de cookie demasiado permisivos:** Limita el alcance de las cookies estableciendo los atributos "Domain" y "Path" a subdominios o directorios específicos, reduciendo el riesgo de acceso no autorizado.
 
-- [ ] **Storing sensitive information in cookies:** Avoid storing sensitive information, such as passwords, API keys, or personally identifiable information (PII) in cookies. Instead, store them server-side and use session IDs to reference the data.
+- [ ] **Almacenamiento de información sensible en cookies:** Evita almacenar información sensible, como contraseñas, claves API o información de identificación personal (PII) en cookies. En su lugar, almacénalos en el lado del servidor y usa IDs de sesión para referenciar los datos.
 
-- [ ] **Unprotected cookie values:** Ensure that cookie values are hashed, encrypted, or signed to protect them from being tampered with by attackers.
+- [ ] **Valores de cookie no protegidos:** Asegura que los valores de las cookies estén hasheados, cifrados o firmados para protegerlos de ser manipulados por atacantes.
 
-- [ ] **Inadequate monitoring and logging:** Implement a proper monitoring and logging system to track cookie usage, to help detect and respond to potential security incidents.
+- [ ] **Monitoreo y registro inadecuados:** Implementa un sistema de monitoreo y registro adecuado para rastrear el uso de cookies, para ayudar a detectar y responder a posibles incidentes de seguridad.
 
 ## SSRF
 
-- [ ] **Test user-controlled URLs:** Identify user-controlled URL inputs and test them with external URLs to see if the server fetches or processes them.
+- [ ] **Probar URLs controladas por el usuario:** Identifica entradas de URL controladas por el usuario y pruébalas con URLs externas para ver si el servidor las obtiene o procesa.
 
-- [ ] **Test internal IP addresses:** Attempt to access internal IP addresses (e.g., 127.0.0.1 or 10.0.0.0/8) or services through user-controlled inputs to check if the server processes them.
+- [ ] **Probar direcciones IP internas:** Intenta acceder a direcciones IP internas (ej. 127.0.0.1 o 10.0.0.0/8) o servicios a través de entradas controladas por el usuario para comprobar si el servidor las procesa.
 
-- [ ] **Use URL schemas:** Test various URL schemas, such as file://, ftp://, or gopher://, to bypass input validation or access internal resources.
+- [ ] **Usar esquemas de URL:** Prueba varios esquemas de URL, como file://, ftp://, o gopher://, para eludir validación de entrada o acceder a recursos internos.
 
-- [ ] **Test domain resolution:** Test if your server resolves domain names to internal IP addresses by using a domain that points to an internal IP address.
+- [ ] **Probar resolución de dominio:** Prueba si tu servidor resuelve nombres de dominio a direcciones IP internas utilizando un dominio que apunte a una IP interna.
 
-- [ ] **Test URL redirection:** Test if the server follows redirects by supplying a URL that redirects to an internal or external resource.
+- [ ] **Probar redirección de URL:** Prueba si el servidor sigue redirecciones proporcionando una URL que redirija a un recurso interno o externo.
 
-- [ ] **Test with different HTTP methods:** Test SSRF vulnerabilities with various HTTP methods, such as GET, POST, PUT, DELETE, or HEAD.
+- [ ] **Probar con diferentes métodos HTTP:** Prueba vulnerabilidades SSRF con varios métodos HTTP, como GET, POST, PUT, DELETE, o HEAD.
 
-- [ ] **Test with malformed URLs:** Test with malformed URLs that may bypass input validation, such as using @ to separate credentials or adding extra slashes.
+- [ ] **Probar con URLs malformadas:** Prueba con URLs malformadas que puedan eludir la validación de entrada, como usar @ para separar credenciales o añadir barras extra.
 
-- [ ] **Test for open ports:** Attempt to access open ports on the server or internal network by specifying the target IP and port in the URL.
+- [ ] **Probar puertos abiertos:** Intenta acceder a puertos abiertos en el servidor o red interna especificando la IP y puerto de destino en la URL.
 
-- [ ] **Test for Out-of-Band (OOB) data exfiltration:** Test if the server can send data to an external domain you control, which may indicate an SSRF vulnerability.
+- [ ] **Probar exfiltración de datos Out-of-Band (OOB):** Prueba si el servidor puede enviar datos a un dominio externo que controles, lo que puede indicar una vulnerabilidad SSRF.
 
-- [ ] **Test for cloud service metadata:** If your site is hosted on a cloud provider, test if the server can access cloud service metadata endpoints, which may expose sensitive information.
+- [ ] **Probar metadatos de servicios en la nube:** Si tu sitio está alojado en un proveedor de nube, prueba si el servidor puede acceder a endpoints de metadatos del servicio en la nube, que pueden exponer información sensible.
 
-- [ ] **Test with time-based techniques:** Use time-based techniques, such as delays or timeouts, to confirm SSRF vulnerabilities when the server response doesn't reveal the fetched content.
+- [ ] **Probar con técnicas basadas en tiempo:** Usa técnicas basadas en tiempo, como retardos o tiempos de espera, para confirmar vulnerabilidades SSRF cuando la respuesta del servidor no revela el contenido obtenido.
 
-- [ ] **Test for protocol smuggling:** Test for protocol smuggling, such as using http:// within an https:// URL, to bypass input validation or access internal resources.
+- [ ] **Probar contrabando de protocolos (protocol smuggling):** Prueba contrabando de protocolos, como usar http:// dentro de una URL https://, para eludir validación de entrada o acceder a recursos internos.
 
-- [ ] **Test for bypassing URL filtering:** Attempt to bypass URL filtering using techniques like URL encoding, double encoding, or mixed case encoding.
+- [ ] **Probar elusión de filtrado de URL:** Intenta eludir el filtrado de URLs usando técnicas como codificación URL, doble codificación o codificación de mayúsculas y minúsculas mixtas.
 
-- [ ] **Use web application scanners:** Use automated web application scanners, such as Burp Suite or OWASP ZAP, to identify potential SSRF vulnerabilities.
+- [ ] **Usar escáneres de aplicaciones web:** Usa escáneres automáticos, como Burp Suite u OWASP ZAP, para identificar posibles vulnerabilidades SSRF.
 
-- [ ] **Test with IPv6 addresses:** Test for SSRF vulnerabilities using IPv6 addresses to bypass input validation or access internal resources.
+- [ ] **Probar con direcciones IPv6:** Prueba vulnerabilidades SSRF usando direcciones IPv6 para eludir validación de entrada o acceder a recursos internos.
 
-## WAF Testing
+## Pruebas de WAF
 
-- [ ] **Test with OWASP Top Ten attacks:** Test for the most common web application vulnerabilities, such as SQLi, XSS, CSRF, and RCE.
+- [ ] **Probar con ataques OWASP Top Ten:** Prueba las vulnerabilidades web más comunes, como SQLi, XSS, CSRF y RCE.
 
-- [ ] **Use WAF testing tools:** Utilize tools like Wafw00f, Nmap, or WAPT to identify and test your WAF's capabilities.
+- [ ] **Usar herramientas de prueba de WAF:** Utiliza herramientas como Wafw00f, Nmap o WAPT para identificar y probar las capacidades de tu WAF.
 
-- [ ] **Test for HTTP methods:** Test different HTTP methods (GET, POST, PUT, DELETE, etc.) to check if your WAF is properly filtering and blocking malicious requests.
+- [ ] **Probar métodos HTTP:** Prueba diferentes métodos HTTP (GET, POST, PUT, DELETE, etc.) para verificar si tu WAF está filtrando y bloqueando correctamente peticiones maliciosas.
 
-- [ ] **Test for HTTP protocol violations:** Send requests that violate the HTTP protocol to see if your WAF can detect and block them.
+- [ ] **Probar violaciones de protocolo HTTP:** Envía peticiones que violen el protocolo HTTP para ver si tu WAF puede detectarlas y bloquearlas.
 
-- [ ] **Test with malformed requests:** Send malformed requests with invalid or unexpected characters, encoding, or headers to test if your WAF can detect and block them.
+- [ ] **Probar con peticiones malformadas:** Envía peticiones malformadas con caracteres inválidos o inesperados, codificaciones o cabeceras para probar si tu WAF puede detectarlas y bloquearlas.
 
-- [ ] **Test for evasion techniques:** Test various evasion techniques, such as URL encoding, double encoding, or using mixed case, to bypass input filters and WAF rules.
+- [ ] **Probar técnicas de evasión:** Prueba varias técnicas de evasión, como codificación URL, doble codificación o uso de mayúsculas/minúsculas mixtas, para eludir filtros de entrada y reglas de WAF.
 
-- [ ] **Test for IP and user agent blocking:** Test if your WAF can block specific IPs or user agents, and check for bypass techniques using proxies or fake user agents.
+- [ ] **Probar bloqueo de IP y User-Agent:** Prueba si tu WAF puede bloquear IPs o User-Agents específicos, y verifica técnicas de bypass usando proxies o User-Agents falsos.
 
-- [ ] **Test for rate limiting:** Test if your WAF can enforce rate limiting and block requests that exceed the allowed rate.
+- [ ] **Probar limitación de velocidad (rate limiting):** Prueba si tu WAF puede aplicar rate limiting y bloquear peticiones que excedan la tasa permitida.
 
-- [ ] **Test for cookie security:** Test if your WAF can detect and block cookie manipulation, such as injecting malicious code or altering session cookies.
+- [ ] **Probar seguridad de cookies:** Prueba si tu WAF puede detectar y bloquear manipulación de cookies, como inyectar código malicioso o alterar cookies de sesión.
 
-- [ ] **Test for file upload vulnerabilities:** Test if your WAF can detect and block malicious file uploads, such as uploading web shells or malware.
+- [ ] **Probar vulnerabilidades de subida de archivos:** Prueba si tu WAF puede detectar y bloquear subidas de archivos maliciosos, como web shells o malware.
 
-- [ ] **Test for known attack signatures:** Test your WAF's ability to detect and block known attack signatures using tools like Burp Suite or OWASP ZAP.
+- [ ] **Probar firmas de ataques conocidos:** Prueba la habilidad de tu WAF para detectar y bloquear firmas de ataques conocidos usando herramientas como Burp Suite u OWASP ZAP.
 
-- [ ] **Test custom WAF rules:** Test custom WAF rules and configurations to ensure they properly block malicious requests.
+- [ ] **Probar reglas WAF personalizadas:** Prueba reglas y configuraciones personalizadas del WAF para asegurar que bloquean adecuadamente peticiones maliciosas.
 
-- [ ] **Test for false positives:** Ensure your WAF doesn't block legitimate traffic by testing with common requests and inputs that may trigger false positives.
+- [ ] **Probar falsos positivos:** Asegura que tu WAF no bloquee tráfico legítimo probando con peticiones y entradas comunes que puedan disparar falsos positivos.
 
-- [ ] **Test for false negatives:** Ensure your WAF doesn't allow malicious traffic by testing with known attack vectors that should trigger blocking.
+- [ ] **Probar falsos negativos:** Asegura que tu WAF no permita tráfico malicioso probando con vectores de ataque conocidos que deberían disparar el bloqueo.
 
-- [ ] **Test for SSL/TLS vulnerabilities:** Test if your WAF can detect and block SSL/TLS vulnerabilities, such as POODLE or Heartbleed.
+- [ ] **Probar vulnerabilidades SSL/TLS:** Prueba si tu WAF puede detectar y bloquear vulnerabilidades SSL/TLS, como POODLE o Heartbleed.
 
-- [ ] **Test for XML vulnerabilities:** Test if your WAF can detect and block XML-based attacks, such as XXE or XEE.
+- [ ] **Probar vulnerabilidades XML:** Prueba si tu WAF puede detectar y bloquear ataques basados en XML, como XXE o XEE.
 
-- [ ] **Test for header injection:** Test if your WAF can detect and block header injection attacks, such as CRLF injection or response splitting.
+- [ ] **Probar inyección de cabeceras:** Prueba si tu WAF puede detectar y bloquear ataques de inyección de cabeceras, como inyección CRLF o división de respuesta (response splitting).
 
-- [ ] **Test for path traversal attacks:** Test if your WAF can detect and block path traversal attacks, such as directory traversal or file inclusion.
+- [ ] **Probar ataques de path traversal:** Prueba si tu WAF puede detectar y bloquear ataques de path traversal, como recorrido de directorios o inclusión de archivos.
 
-- [ ] **Test for application-layer DDoS attacks:** Test if your WAF can detect and block application-layer DDoS attacks, such as Slowloris or RUDY.
+- [ ] **Probar ataques DDoS de capa de aplicación:** Prueba si tu WAF puede detectar y bloquear ataques DDoS de capa de aplicación, como Slowloris o RUDY.
 
-- [ ] **Perform continuous testing and monitoring:** Regularly test your WAF's effectiveness and monitor its logs to detect and block new attack vectors and emerging threats.
+- [ ] **Realizar pruebas y monitoreo continuo:** Prueba regularmente la efectividad de tu WAF y monitorea sus logs para detectar y bloquear nuevos vectores de ataque y amenazas emergentes.
 
-## Header Vulnerability
+## Vulnerabilidades de Cabeceras
 
-- [ ] **Missing Strict-Transport-Security (HSTS) header:** Enables HTTPS-only communication, preventing man-in-the-middle attacks.
+- [ ] **Falta cabecera Strict-Transport-Security (HSTS):** Habilita comunicación solo-HTTPS, previniendo ataques man-in-the-middle.
 
-- [ ] **Missing X-Content-Type-Options header:** Disables MIME type sniffing, reducing the risk of attacks using MIME confusion.
+- [ ] **Falta cabecera X-Content-Type-Options:** Deshabilita el嗅ing de tipos MIME, reduciendo el riesgo de ataques usando confusión MIME.
 
-- [ ] **Missing X-Frame-Options header:** Prevents clickjacking attacks by disallowing or limiting the site from being embedded within frames.
+- [ ] **Falta cabecera X-Frame-Options:** Previene ataques de clickjacking deshabilitando o limitando que el sitio sea embebido en frames.
 
-- [ ] **Missing Content-Security-Policy (CSP) header:** Defines allowed sources of content, reducing the risk of cross-site scripting (XSS) and content injection attacks.
+- [ ] **Falta cabecera Content-Security-Policy (CSP):** Define fuentes permitidas de contenido, reduciendo el riesgo de XSS e inyección de contenido.
 
-- [ ] **Missing X-XSS-Protection header:** Activates built-in browser protection against cross-site scripting (XSS) attacks.
+- [ ] **Falta cabecera X-XSS-Protection:** Activa la protección integrada del navegador contra ataques XSS.
 
-- [ ] **Missing Referrer-Policy header:** Controls the information sent in the Referer header, protecting user privacy and reducing the risk of information leakage.
+- [ ] **Falta cabecera Referrer-Policy:** Controla la información enviada en la cabecera Referer, protegiendo la privacidad del usuario y reduciendo fugas de información.
 
-- [ ] **Missing Feature-Policy header:** Restricts the use of certain browser features and APIs, improving security and privacy.
+- [ ] **Falta cabecera Feature-Policy:** Restringe el uso de ciertas características del navegador y APIs, mejorando seguridad y privacidad.
 
-- [ ] **Insecure CORS (Cross-Origin Resource Sharing) settings:** Allows unauthorized domains to access resources, increasing the risk of cross-site request forgery (CSRF) and data leakage.
+- [ ] **Configuración insegura de CORS (Cross-Origin Resource Sharing):** Permite a dominios no autorizados acceder a recursos, incrementando riesgo de CSRF y fuga de datos.
 
-- [ ] **Missing Expect-CT header:** Enforces Certificate Transparency, reducing the risk of misissued SSL/TLS certificates.
+- [ ] **Falta cabecera Expect-CT:** Fuerza Transparencia de Certificados, reduciendo riesgo de certificados SSL/TLS emitidos erróneamente.
 
-- [ ] **Missing Permissions-Policy header:** Defines which browser features are allowed or denied, enhancing user privacy and security.
+- [ ] **Falta cabecera Permissions-Policy:** Define qué características del navegador están permitidas o denegadas.
 
-- [ ] **Weak or missing Public-Key-Pins (HPKP) header:** Ensures the use of specific cryptographic public keys, reducing the risk of man-in-the-middle attacks using rogue certificates.
+- [ ] **Falta o débil cabecera Public-Key-Pins (HPKP):** Asegura el uso de claves públicas criptográficas específicas.
 
-- [ ] **Missing X-Download-Options header:** Prevents file download prompts from being displayed, reducing the risk of drive-by download attacks.
+- [ ] **Falta cabecera X-Download-Options:** Previene prompts de descarga de archivos, reduciendo riesgo de ataques drive-by download.
 
-- [ ] **Missing X-Permitted-Cross-Domain-Policies header:** Restricts the loading of content from other domains, reducing the risk of data theft.
+- [ ] **Falta cabecera X-Permitted-Cross-Domain-Policies:** Restringe la carga de contenido desde otros dominios.
 
-- [ ] **Missing X-DNS-Prefetch-Control header:** Controls DNS prefetching, potentially improving user privacy.
+- [ ] **Falta cabecera X-DNS-Prefetch-Control:** Controla el prefetching de DNS, mejorando privacidad.
 
-- [ ] **Inadequate Cache-Control settings:** Insecure caching settings can expose sensitive information or allow unauthorized access to content.
+- [ ] **Configuración inadecuada de Cache-Control:** Configuraciones de caché inseguras pueden exponer información sensible.
 
-- [ ] **Missing X-Content-Duration header:** Helps prevent unauthorized media access by specifying the duration of media files.
+- [ ] **Falta cabecera X-Content-Duration:** Ayuda a prevenir acceso no autorizado a medios especificando la duración.
 
-- [ ] **Missing Access-Control-Allow-Origin header:** Improper configuration can result in unauthorized cross-origin resource sharing.
+- [ ] **Falta cabecera Access-Control-Allow-Origin:** Configuración incorrecta puede resultar en intercambio de recursos cruzado no autorizado.
 
-- [ ] **Missing X-WebKit-CSP header:** This older header is used by some legacy browsers for content security policy enforcement.
+- [ ] **Falta cabecera X-WebKit-CSP:** Cabecera antigua usada por navegadores legacy para CSP.
 
-- [ ] **Missing X-Content-Security-Policy header:** Similar to X-WebKit-CSP, this older header is used by some legacy browsers for content security policy enforcement.
+- [ ] **Falta cabecera X-Content-Security-Policy:** Similar a X-WebKit-CSP, usada por navegadores legacy.
 
-- [ ] **Missing X-XContent-Type-Options header:** Disables MIME sniffing on older browsers, reducing the risk of MIME confusion attacks.
+- [ ] **Falta cabecera X-XContent-Type-Options:** Deshabilita sniffing MIME en navegadores antiguos.
 
-- [ ] **Insecure ETag settings:** Weak ETag settings can cause caching issues, potentially exposing sensitive information.
+- [ ] **Configuración insegura de ETag:** ETag débiles pueden causar problemas de caché y exponer información.
 
-- [ ] **Missing or weak Content-Encoding header:** Properly configuring this header helps protect against attacks that rely on manipulating content encoding.
+- [ ] **Falta o débil cabecera Content-Encoding:** Configurar correctamente ayuda a proteger contra manipulación de codificación.
 
-- [ ] **Missing or weak Content-Language header:** Properly configuring this header helps protect against attacks that rely on manipulating content language.
+- [ ] **Falta o débil cabecera Content-Language:** Protege contra manipulación de idioma de contenido.
 
-- [ ] **Missing or weak Last-Modified header:** Properly configuring this header helps protect against attacks that rely on manipulating content modification timestamps.
+- [ ] **Falta o débil cabecera Last-Modified:** Protege contra manipulación de timestamps.
 
-- [ ] **Insecure or missing Cookie headers:** As mentioned in the previous answer, insecure cookie settings can lead to various security vulnerabilities.
+- [ ] **Cabeceras de Cookie inseguras o faltantes:** Configuraciones inseguras pueden llevar a vulnerabilidades.
 
 ## SQL Injection
 
-- [ ] **Single quote test:** Inject a single quote ' into input fields and observe if it generates an error or unexpected behavior, which might indicate a potential SQLi vulnerability.
+- [ ] **Prueba de comilla simple:** Inyecta una comilla simple ' en campos de entrada y observa si genera un error, indicando posible SQLi.
 
-- [ ] **Tautologies:** Inject tautologies like 1=1 or a=a into input fields or URL parameters to test for boolean-based SQLi.
+- [ ] **Tautologías:** Inyecta tautologías como 1=1 o a=a para probar SQLi basado en booleanos.
 
-- [ ] **Union-based SQLi:** Use the UNION operator to combine the results of two or more SELECT statements and extract data from other tables.
+- [ ] **SQLi basada en UNION:** Usa el operador UNION para combinar resultados y extraer datos de otras tablas.
 
-- [ ] **Error-based SQLi:** Inject incorrect syntax or invalid input to trigger error messages that reveal database structure or sensitive information.
+- [ ] **SQLi basada en Error:** Inyecta sintaxis incorrecta para disparar mensajes de error que revelen estructura de la BD.
 
-- [ ] **Time-based SQLi:** Inject time-delaying functions like SLEEP() or WAITFOR DELAY to test for time-based SQLi vulnerabilities.
+- [ ] **SQLi basada en Tiempo:** Inyecta funciones de retardo como SLEEP() o WAITFOR DELAY.
 
-- [ ] **Out-of-band (OOB) SQLi:** Test for OOB SQLi by injecting payloads that cause the database to make external requests, such as DNS lookups or HTTP requests, to exfiltrate data.
+- [ ] **SQLi Out-of-band (OOB):** Prueba SQLi OOB inyectando payloads que causen peticiones externas (DNS, HTTP).
 
-- [ ] **Double encoding:** Test with double-encoded payloads to bypass filters that only decode input once. Example: %253Cscript%253Ealert(1)%253C%252Fscript%253E.
+- [ ] **Doble codificación:** Prueba con payloads doblemente codificados para eludir filtros. Ejemplo: %253Cscript%253Ealert(1)%253C%252Fscript%253E.
 
-- [ ] **Use SQL comment characters:** Inject SQL comment characters (--, /*, */) to bypass input filters or terminate SQL statements.
+- [ ] **Usar caracteres de comentario SQL:** Inyecta caracteres de comentario (--, /*, */) para eludir filtros o terminar sentencias.
 
-- [ ] **Manipulate query logic:** Inject logical operators such as AND or OR to manipulate the query's logic and bypass access controls.
+- [ ] **Manipular lógica de consulta:** Inyecta operadores lógicos como AND u OR para manipular la lógica y eludir controles.
 
-- [ ] **Test with different SQL dialects:** Use payloads specific to different SQL dialects (e.g., MySQL, PostgreSQL, Oracle, or MSSQL) to identify database-specific vulnerabilities.
+- [ ] **Probar diferentes dialectos SQL:** Usa payloads específicos para MySQL, PostgreSQL, Oracle, MSSQL.
 
-- [ ] **Test various HTTP methods:** Test for SQLi vulnerabilities using different HTTP methods, such as POST, PUT, or PATCH, with SQLi payloads.
+- [ ] **Probar varios métodos HTTP:** Prueba vulnerabilidades SQLi usando POST, PUT, PATCH.
 
-- [ ] **Test with URL-encoded or base64-encoded parameters:** Try URL-encoded or base64-encoded parameters to bypass input validation or access control checks.
+- [ ] **Probar parámetros codificados en base64 o URL:** Intenta eludir validación usando codificación.
 
-- [ ] **Test various content types:** Test for SQLi vulnerabilities in different content types that support user input, such as JSON, XML, or URL-encoded form data.
+- [ ] **Probar varios tipos de contenido:** Prueba SQLi en JSON, XML, form-data.
 
-- [ ] **Manipulate cookies:** Inject SQL payloads into cookies to test if the application processes them in an unsafe manner.
+- [ ] **Manipular cookies:** Inyecta payloads SQL en cookies.
 
-- [ ] **Use web application scanners:** Use automated web application scanners, such as Burp Suite or OWASP ZAP, to identify potential SQLi vulnerabilities.
+- [ ] **Usar escáneres web:** Usa Burp Suite o OWASP ZAP para identificar SQLi automáticamente.
 
-## TLS Vulnerability
+## Vulnerabilidades TLS
 
-- [ ] **Weak or outdated SSL/TLS protocols:** Ensure your site only supports secure and up-to-date protocols like TLS 1.2 and TLS 1.3, and disable insecure ones like SSL 2.0, SSL 3.0, and TLS 1.0.
+- [ ] **Protocolos SSL/TLS débiles u obsoletos:** Asegura soporte solo para TLS 1.2/1.3, deshabilita SSL 2.0/3.0 y TLS 1.0.
 
-- [ ] **Insecure cipher suites:** Disable weak cipher suites and use strong ones, such as those based on AES-GCM, ChaCha20-Poly1305, or ECDHE (Elliptic Curve Diffie-Hellman).
+- [ ] **Cipher suites inseguras:** Deshabilita cifrados débiles, usa AES-GCM, ChaCha20-Poly1305, ECDHE.
 
-- [ ] **Vulnerability to known attacks:** Protect your site from known TLS attacks, such as POODLE, BEAST, CRIME, BREACH, or Heartbleed, by applying security patches and following best practices.
+- [ ] **Vulnerabilidad a ataques conocidos:** Protege contra POODLE, BEAST, CRIME, BREACH, Heartbleed parcheando y siguiendo mejores prácticas.
 
-- [ ] **Inadequate certificate management:** Use a valid, trusted, and up-to-date SSL/TLS certificate from a reputable Certificate Authority (CA). Regularly check for certificate expiration and renewals.
+- [ ] **Gestión inadecuada de certificados:** Usa un certificado válido y confiable de una CA reputable. Revisa expiración y renovación.
 
-- [ ] **Insufficient certificate chain validation:** Ensure proper validation of the certificate chain to prevent man-in-the-middle attacks using rogue or misissued certificates.
+- [ ] **Validación insuficiente de cadena de certificados:** Asegura validación correcta para prevenir MITM.
 
-- [ ] **Weak or missing public key pinning:** Implement HTTP Public Key Pinning (HPKP) or Certificate Transparency to enforce the use of specific public keys and reduce the risk of man-in-the-middle attacks using rogue certificates.
+- [ ] **Public key pinning débil o faltante:** Implementa HPKP o logs de transparencia.
 
-- [ ] **Mixed content:** Ensure that all content, including images, stylesheets, and scripts, are served over HTTPS to prevent mixed content warnings and potential attacks.
+- [ ] **Contenido mixto:** Asegura que todo el contenido se sirva sobre HTTPS.
 
-- [ ] **Insecure renegotiation:** Disable insecure client-initiated renegotiation to protect your site from man-in-the-middle attacks exploiting this vulnerability.
+- [ ] **Renegociación insegura:** Deshabilita renegociación iniciada por cliente insegura.
 
-- [ ] **Insufficient forward secrecy:** Use cipher suites that support forward secrecy, such as ECDHE or DHE, to protect past communications from being decrypted even if the server's private key is compromised.
+- [ ] **Forward secrecy insuficiente:** Usa cipher suites que soporten forward secrecy (ECDHE, DHE).
 
-- [ ] **Lack of OCSP stapling:** Implement OCSP (Online Certificate Status Protocol) stapling to reduce the latency of SSL/TLS handshakes and provide real-time certificate revocation information.
+- [ ] **Falta de OCSP stapling:** Implementa OCSP stapling para reducir latencia y proveer estado de revocación.
 
-## File Upload
+## Subida de Archivos (File Upload)
 
-- [ ] **File size limit:** Verify that there is an appropriate file size limit in place to prevent large file uploads that could potentially exhaust server resources.
+- [ ] **Límite de tamaño de archivo:** Verifica que existe un límite apropiado para prevenir agotamiento de recursos.
 
-- [ ] **File type restrictions:** Ensure that only allowed file types can be uploaded, and test with disallowed file types to confirm the restrictions are working.
+- [ ] **Restricciones de tipo de archivo:** Asegura que solo tipos permitidos puedan subirse, prueba con tipos no permitidos.
 
-- [ ] **MIME type validation:** Check that the MIME type of uploaded files is being validated and that the system rejects files with incorrect MIME types.
+- [ ] **Validación de tipo MIME:** Chequea que el tipo MIME sea validado y rechace incorrectos.
 
-- [ ] **Filename validation:** Test that the system filters and sanitizes filenames to avoid malicious filenames (e.g., "../", ".htaccess") that could lead to security vulnerabilities.
+- [ ] **Validación de nombre de archivo:** Prueba sanitización para evitar nombres maliciosos (ej. "../", ".htaccess").
 
-- [ ] **Malware scanning:** Scan uploaded files for malware or viruses using an up-to-date antivirus solution.
+- [ ] **Escaneo de malware:** Escanea archivos subidos en busca de virus/malware.
 
-- [ ] **Duplicate file names:** Test how the system handles duplicate file names, ensuring that it doesn't overwrite existing files or create security vulnerabilities.
+- [ ] **Nombres de archivo duplicados:** Prueba manejo de duplicados para evitar sobrescritura o vulnerabilidades.
 
-- [ ] **Upload directory:** Verify that the upload directory is secured and not accessible for unauthorized users.
+- [ ] **Directorio de subida:** Verifica que el directorio sea seguro y no accesible para usuarios no autorizados.
 
-- [ ] **Permissions:** Ensure that proper file and folder permissions are set to prevent unauthorized access, modification, or deletion of uploaded files.
+- [ ] **Permisos:** Asegura permisos de archivo/carpeta para prevenir acceso/modificación no autorizada.
 
-- [ ] **User authentication:** Test if file uploads require proper user authentication and that unauthorized users cannot upload files.
+- [ ] **Autenticación de usuario:** Prueba si se requiere autenticación para subir archivos.
 
-- [ ] **Image validation:** If uploading images, test for potential vulnerabilities related to image processing libraries (e.g., buffer overflows, code injection).
+- [ ] **Validación de imagen:** Prueba vulnerabilidades de procesamiento de imagen (buffer overflows, inyección).
 
-- [ ] **File content validation:** Ensure that the content of the files is validated and doesn't contain malicious code or scripts.
+- [ ] **Validación de contenido de archivo:** Asegura que el contenido sea validado contra código malicioso.
 
-- [ ] **Maximum file uploads:** Test the maximum number of simultaneous file uploads to ensure the system can handle the load without crashing or compromising security.
+- [ ] **Máximas subidas de archivo:** Prueba límites de subidas simultáneas.
 
-- [ ] **Timeouts:** Test the system for handling long uploads and confirm that it has appropriate timeouts in place.
+- [ ] **Timeouts:** Prueba manejo de subidas largas y timeouts.
 
-- [ ] **Rate limiting:** Verify that the system has rate limiting in place to prevent abuse and denial of service (DoS) attacks.
+- [ ] **Rate limiting:** Verifica limites de tasa para prevenir abuso/DoS.
 
-- [ ] **Error handling:** Test the system's error handling capabilities to ensure that it doesn't leak sensitive information or create security vulnerabilities.
+- [ ] **Manejo de errores:** Prueba manejo de errores para evitar fuga de información.
 
-- [ ] **Cross-site scripting (XSS):** Test for potential XSS vulnerabilities related to file uploads, such as the inclusion of malicious scripts within file metadata.
+- [ ] **Cross-site scripting (XSS):** Prueba XSS en metadatos de archivos o nombres.
 
-- [ ] **Path traversal:** Test for path traversal vulnerabilities by attempting to upload files with directory traversal characters (e.g., "../") in the file name.
+- [ ] **Path traversal:** Prueba subida con caracteres de traversal ("../").
 
-- [ ] **SQL injection:** Test for potential SQL injection vulnerabilities related to file uploads, such as manipulating metadata to include malicious SQL queries.
+- [ ] **SQL injection:** Prueba inyección SQL en metadatos o nombres.
 
-- [ ] **Access control:** Verify that proper access controls are in place for viewing, editing, or deleting uploaded files.
+- [ ] **Control de acceso:** Verifica controles para ver, editar, borrar archivos.
 
-- [ ] **Logging and monitoring:** Ensure that the system logs and monitors all file upload activities for potential security threats and suspicious behavior.
+- [ ] **Monitoreo y logging:** Asegura registro de actividades de subida.
 
 ## XSS
 
-- [ ] **Basic payload injection:** Inject simple script tags or HTML tags with JavaScript event handlers into input fields or query parameters. Example: <script>alert(1)</script> or <img src=x onerror=alert(1)>.
+- [ ] **Inyección básica de payload:** Inyecta etiquetas script simples o eventos JS. Ej: <script>alert(1)</script>.
 
-- [ ] **URL encoding:** Use URL-encoded payloads to bypass input filters that may block certain characters. Example: %3Cscript%3Ealert(1)%3C%2Fscript%3E.
+- [ ] **Codificación URL:** Usa payloads codificados en URL. Ej: %3Cscript%3Ealert(1)%3C%2Fscript%3E.
 
-- [ ] **Hex encoding:** Test with hex-encoded payloads to bypass filters that block specific characters. Example: <scr\x69pt>alert(1)</scr\x69pt>.
+- [ ] **Codificación Hex:** Prueba codificación hex para eludir filtros.
 
-- [ ] **Case variation:** Try different letter casing to bypass case-sensitive filters. Example: <ScRiPt>alert(1)</ScRiPt>.
+- [ ] **Variación de mayúsculas:** Prueba <ScRiPt>alert(1)</ScRiPt>.
 
-- [ ] **HTML entity encoding:** Inject payloads with HTML entities to evade filters that remove or escape specific characters. Example: &lt;script&gt;alert(1)&lt;/script&gt;.
+- [ ] **Codificación HTML entity:** Inyecta &lt;script&gt;alert(1)&lt;/script&gt;.
 
-- [ ] **Null byte injection:** Use null bytes to break out of input restrictions or bypass filters. Example: <scr%00ipt>alert(1)</scr%00ipt>.
+- [ ] **Inyección de Null byte:** Usa null bytes para romper restricciones.
 
-- [ ] **Double encoding:** Test with double-encoded payloads to bypass filters that only decode input once. Example: %253Cscript%253Ealert(1)%253C%252Fscript%253E.
+- [ ] **Doble codificación:** Prueba doble codificación URL.
 
-- [ ] **Attribute injection:** Attempt to inject payloads within existing HTML tags by closing the current attribute and adding a new one with malicious JavaScript. Example: "><img src=x onerror=alert(1)>.
+- [ ] **Inyección de atributos:** Inyecta payloads cerrando atributos y añadiendo eventos. Ej: "><img src=x onerror=alert(1)>.
 
-- [ ] **JavaScript event handlers:** Inject JavaScript event handlers, such as onmouseover, onfocus, or onclick, into various HTML elements to trigger the payload.
+- [ ] **Eventos JavaScript:** Inyecta eventos como onmouseover, onfocus, onclick.
 
-- [ ] **Malformed tags:** Test with malformed tags to bypass filters that look for well-formed HTML. Example: <scrip<script>t>alert(1)</scrip</script>t>.
+- [ ] **Etiquetas malformadas:** Prueba etiquetas malformadas para eludir filtros.
 
-- [ ] **Using different contexts:** Test payloads in various contexts, such as HTML comments, inline JavaScript, or CSS, to bypass context-specific filters.
+- [ ] **Usar diferentes contextos:** Prueba en comentarios HTML, JS inline, CSS.
 
-- [ ] **Data URI:** Inject data URI payloads to bypass certain input filters. Example: <iframe src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></iframe>.
+- [ ] **Data URI:** Inyecta payloads Data URI.
 
-- [ ] **SVG payloads:** Use Scalable Vector Graphics (SVG) payloads to execute JavaScript in a different context. Example: <svg onload="alert(1)"></svg>.
+- [ ] **Payloads SVG:** Usa SVG para ejecutar JS.
 
-- [ ] **Breaking out of JavaScript:** Inject payloads that break out of existing JavaScript code and execute malicious scripts.
+- [ ] **Romper contexto JS:** Inyecta payloads que rompan código JS existente.
 
-- [ ] **Testing error pages:** Check if error pages, such as 404 or 500, reflect user input without proper encoding, as these can be used for reflected XSS attacks.
+- [ ] **Probar páginas de error:** Chequea si el input se refleja en errores 404/500.
 
 ## XXE
 
-- [ ] **Basic external entity:** Inject a basic external entity reference to test if the parser resolves it
+- [ ] **Entidad externa básica:** Inyecta referencia a entidad externa básica.
 
-- [ ] **External parameter entity:** Inject an external parameter entity to bypass input filters. 
+- [ ] **Entidad de parámetro externa:** Inyecta entidad de parámetro.
 
-- [ ] **Blind XXE (OOB technique):** Use Out-of-Band (OOB) techniques to exfiltrate data if the response doesn't display the content of the external entity.
+- [ ] **Blind XXE (OOB):** Usa técnicas Out-of-Band para exfiltrar datos.
 
-- [ ] **File inclusion:** Attempt to include local or remote files using the SYSTEM identifier to test for arbitrary file inclusion.
+- [ ] **Inclusión de archivos:** Usa SYSTEM identifier para incluir archivos locales/remotos.
 
-- [ ] **Internal entity expansion:** Inject an internal entity with a large number of nested entities to test for a Billion Laughs attack (a type of denial-of-service attack).
+- [ ] **Expansión de entidad interna:** Prueba ataque Billion Laughs (DoS).
 
-- [ ] **Recursive entity references:** Test for recursive entity expansion to identify potential denial-of-service (DoS) vulnerabilities.
+- [ ] **Referencias recursivas:** Prueba expansión recursiva (DoS).
 
-- [ ] **XML bomb:** Inject a large XML file with deeply nested elements to test for XML bomb vulnerabilities, which can lead to DoS attacks.
+- [ ] **Bomba XML:** Inyecta archivo XML grande anidado (DoS).
 
-- [ ] **Error-based XXE:** Inject malformed XML with external entity references to trigger errors that reveal sensitive information.
+- [ ] **XXE basada en error:** Inyecta XML malformado para revelar info en errores.
 
-- [ ] **XML encoding:** Try different XML encodings (e.g., UTF-16, UTF-32) to bypass input filters that block specific characters.
+- [ ] **Codificación XML:** Prueba diferentes codificaciones (UTF-16, UTF-32).
 
-- [ ] **Use CDATA sections:** Inject external entity references inside CDATA sections to bypass input filters that remove or escape specific characters.
+- [ ] **Usar secciones CDATA:** Inyecta referencias dentro de CDATA.
 
-- [ ] **Custom entities:** Create custom entities with external references to test if the XML parser resolves them.
+- [ ] **Entidades personalizadas:** Crea entidades personalizadas con referencias externas.
 
-- [ ] **Test various content types:** Test for XXE vulnerabilities in different content types that support XML, such as SOAP, XHTML, SVG, or RSS.
+- [ ] **Probar varios tipos de contenido:** Prueba en SOAP, XHTML, SVG, RSS.
 
-- [ ] **Test XML-based file formats:** Test for XXE vulnerabilities in XML-based file formats, such as Office Open XML (.docx, .pptx, .xlsx) or OpenDocument (.odt, .ods, .odp).
+- [ ] **Probar formatos de archivo XML:** Prueba en .docx, .xlsx, .odt.
 
-- [ ] **Test different HTTP methods:** Test for XXE vulnerabilities using different HTTP methods, such as POST, PUT, or PATCH, with XML payloads.
+- [ ] **Probar diferentes métodos HTTP:** Prueba en POST, PUT con payloads XML.
 
-- [ ] **Test XML-based APIs:** Test for XXE vulnerabilities in XML-based APIs, such as XML-RPC or SOAP-based web services.
+- [ ] **Probar APIs basadas en XML:** Prueba en XML-RPC, SOAP.
 
 ## IDOR
 
-- [ ] **Sequential IDs:** Analyze sequential numeric IDs or predictable identifiers in URLs, API endpoints, or hidden form fields, and try modifying them to access unauthorized resources.
+- [ ] **IDs secuenciales:** Analiza IDs numéricos secuenciales o predecibles y modifícalos.
 
-- [ ] **User-specific data:** Ensure proper authorization checks are in place for user-specific data, such as profiles, orders, or messages, by attempting to access another user's data using your authenticated session.
+- [ ] **Datos específicos de usuario:** Intenta acceder a datos de otro usuario (perfiles, ordenes).
 
-- [ ] **Enumerate identifiers:** Create multiple accounts with different roles (e.g., admin, user) and compare the object identifiers to identify patterns or correlations.
+- [ ] **Enumerar identificadores:** Crea múltiples cuentas y compara patrones de IDs.
 
-- [ ] **Test file uploads:** Test file upload functionality and attempt to access uploaded files by guessing or modifying their filenames.
+- [ ] **Probar subida de archivos:** Intenta acceder a archivos subidos adivinando nombres.
 
-- [ ] **Test API endpoints:** Analyze API endpoints for exposed object references and attempt to access unauthorized resources by modifying request parameters.
+- [ ] **Probar endpoints de API:** Analiza y modifica referencias a objetos en APIs.
 
-- [ ] **Test hidden form fields:** Examine hidden form fields for object references and modify their values to access unauthorized resources.
+- [ ] **Probar campos ocultos:** Examina y modifica campos ocultos en formularios.
 
-- [ ] **Test JSON or XML responses:** Analyze JSON or XML responses for exposed object references and attempt to access unauthorized resources by modifying request parameters.
+- [ ] **Probar respuestas JSON/XML:** Analiza referencias a objetos en respuestas.
 
-- [ ] **Test related features:** Test related features or modules, such as password reset or email validation, for IDOR vulnerabilities by modifying request parameters.
+- [ ] **Probar características relacionadas:** Prueba reset de password, validación de email.
 
-- [ ] **Test with different roles:** Create accounts with different roles (e.g., admin, user, guest) and attempt to access unauthorized resources using different user sessions.
+- [ ] **Probar con diferentes roles:** Prueba acceso cruzado entre roles (admin vs user).
 
-- [ ] **Test with unauthenticated sessions:** Test if unauthenticated users can access resources by modifying object references in URLs or API endpoints.
+- [ ] **Probar con sesiones no autenticadas:** Prueba acceso sin sesión.
 
-- [ ] **Use web application scanners:** Use automated web application scanners, such as Burp Suite or OWASP ZAP, to identify potential IDOR vulnerabilities.
+- [ ] **Usar escáneres web:** Automatiza detección con Burp/ZAP.
 
-- [ ] **Analyze access logs:** Review server access logs for patterns indicating unauthorized access attempts.
+- [ ] **Analizar logs de acceso:** Busca patrones de acceso no autorizado.
 
-- [ ] **Manipulate cookies:** Manipulate cookies or session tokens to impersonate other users and attempt to access unauthorized resources.
+- [ ] **Manipular cookies:** Manipula tokens para impersonar usuarios.
 
-- [ ] **Test request methods:** Test for IDOR vulnerabilities using different HTTP request methods, such as GET, POST, PUT, DELETE, or PATCH.
+- [ ] **Probar métodos de petición:** Prueba IDOR en GET, POST, PUT, DELETE.
 
-- [ ] **Test with URL-encoded or base64-encoded parameters:** Try URL-encoded or base64-encoded parameters to bypass input validation or access control checks.
+- [ ] **Probar parámetros codificados:** Intenta eludir controles con codificación.
 
 ## Subdomain Takeover
 
-- [ ] **Enumerate subdomains:** Use tools like Sublist3r, Amass, or dnsrecon to discover subdomains associated with your main domain.
+- [ ] **Enumerar subdominios:** Usa Sublist3r, Amass, dnsrecon.
 
-- [ ] **Analyze DNS records:** Check DNS records (e.g., CNAME, A, AAAA, MX) for subdomains pointing to external services or expired domains.
+- [ ] **Analizar registros DNS:** Chequea CNAME, A, MX apuntando a servicios externos/expirados.
 
-- [ ] **Check HTTP responses:** Examine HTTP responses for error messages or status codes that may indicate an unclaimed or expired external service.
+- [ ] **Chequear respuestas HTTP:** Busca errores que indiquen servicio no reclamado.
 
-- [ ] **Use online services:** Utilize online services such as crt.sh or Censys to gather subdomain and certificate data for your main domain.
+- [ ] **Usar servicios online:** crt.sh, Censys.
 
-- [ ] **Test common third-party services:** Check if subdomains are pointing to common third-party services, such as AWS S3, GitHub Pages, or Heroku, that are susceptible to subdomain takeover attacks.
+- [ ] **Probar servicios de terceros comunes:** AWS S3, GitHub Pages, Heroku, etc.
 
-- [ ] **Test for dangling CNAME records:** Look for dangling CNAME records that point to external services that have been deleted or expired.
+- [ ] **Probar registros CNAME colgantes:** Busca CNAMEs apuntando a la nada.
 
-- [ ] **Monitor domain registration:** Monitor domain registration information for expired domains that can be taken over.
+- [ ] **Monitorear registro de dominios:** Busca dominios expirados.
 
-- [ ] **Use subdomain takeover tools:** Utilize tools like SubOver, Subjack, or tko-subs to automatically identify subdomain takeover vulnerabilities.
+- [ ] **Usar herramientas de takeover:** SubOver, Subjack, tko-subs.
 
-- [ ] **Check for misconfigured DNS settings:** Examine DNS settings for misconfigurations that might lead to subdomain takeover vulnerabilities.
+- [ ] **Chequear configuraciones DNS erróneas:** Busca misconfiguraciones.
 
-- [ ] **Test for wildcard DNS records:** Check for wildcard DNS records that might expose subdomains to takeover attacks.
+- [ ] **Probar registros DNS wildcard:** Verifica exposición por wildcards.
 
-- [ ] **Check for abandoned subdomains:** Look for abandoned subdomains that still point to unused external services.
+- [ ] **Chequear subdominios abandonados:** Busca subdominios en desuso.
 
-- [ ] **Test for improper redirects:** Check if subdomains are improperly redirecting traffic to external services that can be taken over.
+- [ ] **Probar redirecciones impropias:** Redirecciones a servicios tomables.
 
-- [ ] **Monitor domain ownership changes:** Monitor domain ownership changes for potential takeover opportunities.
+- [ ] **Monitorear cambios de propiedad:** Detecta oportunidades de takeover.
 
-- [ ] **Collaborate with third-party service providers:** Work with third-party service providers to ensure proper domain configuration and prevent subdomain takeover.
+- [ ] **Colaborar con proveedores:** Asegura configuración correcta.
 
-- [ ] **Regularly audit subdomain configurations:** Periodically review your subdomain configurations to identify and mitigate potential subdomain takeover risks.
+- [ ] **Auditar regularmente:** Revisa configuraciones periódicamente.
 
 ## Wordpress CMS
 
-- [ ] **Keep WordPress updated:** Regularly update the WordPress core, plugins, and themes to protect against known vulnerabilities.
+- [ ] **Mantener WordPress actualizado:** Actualiza core, plugins y temas.
 
-- [ ] **Test for weak passwords:** Ensure strong passwords are used for all user accounts, especially for administrator accounts.
+- [ ] **Probar contraseñas débiles:** Asegura contraseñas fuertes, especialmente admins.
 
-- [ ] **Check for user enumeration:** Test if usernames can be enumerated through the WordPress author archives or other means, and disable user enumeration if possible.
+- [ ] **Chequear enumeración de usuarios:** Prueba enumeración vía archivos de autor, deshabilítalo.
 
-- [ ] **Test for default admin username:** Ensure the default "admin" username is not used, and replace it with a custom username.
+- [ ] **Probar usuario admin por defecto:** Asegura que "admin" no exista o esté renombrado.
 
-- [ ] **Limit login attempts:** Test if login attempts are limited to prevent brute-force attacks, and install a plugin like Login LockDown or Wordfence to enable this functionality if necessary.
+- [ ] **Limitar intentos de login:** Instala plugins (Wordfence) para prevenir fuerza bruta.
 
-- [ ] **Test for insecure file permissions:** Check the permissions of your WordPress files and folders to ensure they are secure and cannot be accessed by unauthorized users.
+- [ ] **Probar permisos de archivo inseguros:** Verifica permisos de carpetas/archivos.
 
-- [ ] **Test for XML-RPC vulnerabilities:** Test for vulnerabilities related to the XML-RPC feature, such as DDoS or brute-force attacks, and disable it if not needed.
+- [ ] **Probar vulnerabilidades XML-RPC:** Prueba ataques DDoS/Fuerza Bruta en XML-RPC, deshabilítalo si no se usa.
 
-- [ ] **Test for SQL injection vulnerabilities:** Test your WordPress site for SQL injection vulnerabilities by injecting SQL payloads into input fields or URL parameters.
+- [ ] **Probar inyección SQL:** Prueba SQLi en inputs/URLs.
 
-- [ ] **Test for Cross-Site Scripting (XSS) vulnerabilities:** Test your WordPress site for XSS vulnerabilities by injecting JavaScript payloads into input fields or URL parameters.
+- [ ] **Probar XSS:** Prueba inyección JS.
 
-- [ ] **Test for Cross-Site Request Forgery (CSRF) vulnerabilities:** Test your WordPress site for CSRF vulnerabilities by attempting to perform actions without a valid CSRF token or by using another user's authenticated session.
+- [ ] **Probar CSRF:** Intenta acciones sin token válido.
 
-- [ ] **Test for vulnerable plugins:** Check for known vulnerabilities in your installed plugins using tools like WPScan or by regularly monitoring vulnerability databases.
+- [ ] **Probar plugins vulnerables:** Usa WPScan para detectar plugins con fallos conocidos.
 
-- [ ] **Test for vulnerable themes:** Check for known vulnerabilities in your installed themes using tools like WPScan or by regularly monitoring vulnerability databases.
+- [ ] **Probar temas vulnerables:** Usa WPScan para temas.
 
-- [ ] **Test for insecure configurations:** Check your WordPress configuration (wp-config.php) for insecure settings, such as displaying errors, and secure it by disabling features like error reporting or file editing.
+- [ ] **Probar configuraciones inseguras:** Revisa wp-config.php (debug mode, etc).
 
-- [ ] **Check for security best practices:** Ensure your site follows WordPress security best practices, such as using HTTPS, disabling directory browsing, or setting secure HTTP headers.
+- [ ] **Chequear mejores prácticas de seguridad:** HTTPS, ocultar listado de directorios, cabeceras seguras.
 
-- [ ] **Use a security plugin:** Install a comprehensive security plugin like Wordfence, iThemes Security, or Sucuri to monitor and protect your site from various threats.
+- [ ] **Usar plugin de seguridad:** Instala Wordfence, Sucuri, etc.
